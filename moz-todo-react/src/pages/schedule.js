@@ -13,6 +13,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 
 const Schedule= () =>{
+    //navigation
+    const navigate = useNavigate();
     //Today s date
     const fechaHoy = new Date();
     const year = fechaHoy.getFullYear();
@@ -79,9 +81,16 @@ const Schedule= () =>{
         setShowForm(false);
 
     }
+    //Come back to home page
+    const goHome = () =>{
+        navigate("/home")
+    }
     //calendar
     return (
+        
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LittleButton content="Go back"  size="large" c='#4169E1' action={goHome} />
+        <br></br><br></br><br></br>
        <DateCalendar value={date} onChange={(newValue) => setDate(newValue)} />
        <div>
             {!showForm &&
@@ -111,8 +120,8 @@ const Schedule= () =>{
                 &nbsp;&nbsp;&nbsp;&nbsp;Title  :&nbsp;&nbsp;
                     <input type="text" name="email" value={title} onChange={handleTitle} />
                 </label>
-                <LittleButton content="Make Reservation"  size="large" c='#4169E1' onClick={handleClickOpen} />
-                <LittleButton content="Cancel"  size="large" c='#4169E1' onClick={handleClose} />
+                <LittleButton content="Make Reservation"  size="large" c='#4169E1' action={handleClickOpen} />
+                <LittleButton content="Cancel"  size="large" c='#4169E1' action={handleClose} />
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Confirmation</DialogTitle>
                         <DialogContent>
@@ -121,11 +130,9 @@ const Schedule= () =>{
                         </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                        <LittleButton onClick={handleClose} color="primary">
-                            Cancel
+                        <LittleButton  content="Cancel"  size="large" c='#4169E1' action={handleClose} color="primary">
                         </LittleButton>
-                        <LittleButton onClick={reservation} color="primary">
-                            Confirm
+                        <LittleButton  content="Confirm"  size="large" c='#4169E1' action={reservation} color="primary">
                         </LittleButton>
                     </DialogActions>
                 </Dialog>
