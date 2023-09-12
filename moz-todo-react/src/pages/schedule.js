@@ -62,20 +62,21 @@ const Schedule= () =>{
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
+        console.log("yes")
         setOpen(true);
     };
     const handleClose = () => {
+        console.log("nope");
         setOpen(false);
         setShowForm(false);
     };
 
-    //cancelar y reservar
-    const cancel = () =>{
-        setShowForm(false);
-
-    }
+    // reservar
+   
     const reservation = () =>{
-        
+        console.log("reservation");
+        setOpen(false);
+        setShowForm(false);
 
     }
     //calendar
@@ -110,7 +111,8 @@ const Schedule= () =>{
                 &nbsp;&nbsp;&nbsp;&nbsp;Title  :&nbsp;&nbsp;
                     <input type="text" name="email" value={title} onChange={handleTitle} />
                 </label>
-                <LittleButton content="Reservar"  size="large" c='#4169E1' onClick={handleClickOpen} />
+                <LittleButton content="Make Reservation"  size="large" c='#4169E1' onClick={handleClickOpen} />
+                <LittleButton content="Cancel"  size="large" c='#4169E1' onClick={handleClose} />
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Confirmation</DialogTitle>
                         <DialogContent>
@@ -127,7 +129,7 @@ const Schedule= () =>{
                         </LittleButton>
                     </DialogActions>
                 </Dialog>
-                <LittleButton content="Cancelar"  size="large" c='#4169E1' onClick={cancel} />
+                
                 </form>
                 </div>
             )}
