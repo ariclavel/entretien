@@ -71,9 +71,11 @@ const Schedule= () =>{
 
     //cancelar y reservar
     const cancel = () =>{
+        setShowForm(false);
 
     }
     const reservation = () =>{
+        
 
     }
     //calendar
@@ -117,12 +119,12 @@ const Schedule= () =>{
                         </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                        <Button onClick={handleClose} color="primary">
+                        <LittleButton onClick={handleClose} color="primary">
                             Cancel
-                        </Button>
-                        <Button onClick={reservation} color="primary">
+                        </LittleButton>
+                        <LittleButton onClick={reservation} color="primary">
                             Confirm
-                        </Button>
+                        </LittleButton>
                     </DialogActions>
                 </Dialog>
                 <LittleButton content="Cancelar"  size="large" c='#4169E1' onClick={cancel} />
