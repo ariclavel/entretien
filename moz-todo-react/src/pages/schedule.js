@@ -6,6 +6,11 @@ import dayjs, { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 
 const Schedule= () =>{
     //Today s date
@@ -13,6 +18,7 @@ const Schedule= () =>{
     const year = fechaHoy.getFullYear();
     const month = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // El mes se indexa desde 0, por lo que debes sumar 1
     const day = String(fechaHoy.getDate()).padStart(2, '0');
+    
 
     const fechaFormatoYMD = `${year}-${month}-${day}`;
     //console.log(fechaFormatoYMD);
@@ -23,6 +29,9 @@ const Schedule= () =>{
     const [date, setDate] = useState(dayjs(fechaFormatoYMD));
     //form bool
     const [showForm, setShowForm] = useState(false);
+    //email and title
+    const [email, setEmail] = useState("");
+    const [title, setTitle] = useState("");
     //form shhow or not
     
 
@@ -42,31 +51,81 @@ const Schedule= () =>{
 
         })*/
     };
+    //handle inputs
+    const handleEmail = (event) => {
+        setEmail(event.target.value); 
+    };
+    const handleTitle = (event) => {
+        setTitle(event.target.value); 
+    };
+    //Dialog
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+        setShowForm(false);
+    };
+
+    //cancelar y reservar
+    const cancel = () =>{
+
+    }
+    const reservation = () =>{
+
+    }
     //calendar
     return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
        <DateCalendar value={date} onChange={(newValue) => setDate(newValue)} />
        <div>
+            {!showForm &&
             <LittleButton content= "Go to this date" size="large" c='#000000' action={goDay} />
+            }
             
-            {availables.map((element) => {
+            {!showForm && 
+            
+            availables.map((element) => {
                
-             return (<LittleButton content={element.name}  size="large" c='#4169E1' action={()=>chooseSchedule(element.key)} />)
-               
-           
-           })}
+                return (<LittleButton content={element.name}  size="large" c='#4169E1' action={()=>chooseSchedule(element.key)} />)
+                  
+              
+             })}
+            
+            
+            
            {showForm && (
                 <div>
                 <form>
                 <label>
-                    Nombre:
-                    <input type="text" name="nombre" />
+                    Email  :&nbsp;&nbsp;
+                    <input type="email" name="nombre" value={email} onChange={handleEmail} />
                 </label>
                 <label>
-                    Email:
-                    <input type="email" name="email" />
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;Title  :&nbsp;&nbsp;
+                    <input type="text" name="email" value={title} onChange={handleTitle} />
                 </label>
-                <button type="submit">Enviar</button>
+                <LittleButton content="Reservar"  size="large" c='#4169E1' onClick={handleClickOpen} />
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>Confirmation</DialogTitle>
+                        <DialogContent>
+                        <DialogContentText>
+                            Are you sure you want to perform this action?
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={reservation} color="primary">
+                            Confirm
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <LittleButton content="Cancelar"  size="large" c='#4169E1' onClick={cancel} />
                 </form>
                 </div>
             )}
