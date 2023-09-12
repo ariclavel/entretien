@@ -31,16 +31,17 @@ const Schedule= () =>{
         //Available dates with query
         let arr = [{key: "popo", name: "holi"},{key: "popis", name: "ari"}];
         setAvailables(arr);
-    }
-    const chooseSchedule = () =>{
+    };
+    const chooseSchedule = (key) =>{
         //need the topic of the meeting and the email of the person
         setShowForm(true);
         //Erase the hour from availables
-        availables.filter((element,index)=>{
+        setAvailables(availables.filter((element) => element.key!==key)); 
+        /*availables.filter((element,index)=>){
             element.key!==key;
 
-        })
-    }
+        })*/
+    };
     //calendar
     return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -50,10 +51,25 @@ const Schedule= () =>{
             
             {availables.map((element) => {
                
-             return (<LittleButton content={element.name}  size="large" c='#4169E1' action={chooseSchedule} />)
+             return (<LittleButton content={element.name}  size="large" c='#4169E1' action={()=>chooseSchedule(element.key)} />)
                
            
            })}
+           {showForm && (
+                <div>
+                <form>
+                <label>
+                    Nombre:
+                    <input type="text" name="nombre" />
+                </label>
+                <label>
+                    Email:
+                    <input type="email" name="email" />
+                </label>
+                <button type="submit">Enviar</button>
+                </form>
+                </div>
+            )}
          
             
             

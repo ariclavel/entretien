@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 const Home = () =>{
     const navigate = useNavigate();
-    let goSchedule =() =>{
+    const goSchedule =() =>{
         navigate('schedule');
     }
     return(
