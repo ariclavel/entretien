@@ -2,7 +2,6 @@ import React from "react";
 import {useState } from "react";
 import LittleButton from "../components/LittleButton";
 import {useNavigate} from "react-router-dom";
-import Calendar from 'react-calendar'; 
 import dayjs, { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -22,6 +21,10 @@ const Schedule= () =>{
     const [availables, setAvailables] = useState([{key: "1", name: "perra"}]);
     //date
     const [date, setDate] = useState(dayjs(fechaFormatoYMD));
+    //form bool
+    const [showForm, setShowForm] = useState(false);
+    //form shhow or not
+    
 
     const goDay = () =>{
         
@@ -29,8 +32,14 @@ const Schedule= () =>{
         let arr = [{key: "popo", name: "holi"},{key: "popis", name: "ari"}];
         setAvailables(arr);
     }
-    const chooseSchedule = (id) =>{
+    const chooseSchedule = () =>{
+        //need the topic of the meeting and the email of the person
+        setShowForm(true);
         //Erase the hour from availables
+        availables.filter((element,index)=>{
+            element.key!==key;
+
+        })
     }
     //calendar
     return (
@@ -41,10 +50,11 @@ const Schedule= () =>{
             
             {availables.map((element) => {
                
-             return (<LittleButton content={element.name}  size="large" c='#4169E1' action={(element.key)<={chooseSchedule}}  />)
+             return (<LittleButton content={element.name}  size="large" c='#4169E1' action={chooseSchedule} />)
                
            
            })}
+         
             
             
             
