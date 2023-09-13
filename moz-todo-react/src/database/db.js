@@ -34,7 +34,7 @@ const db = getDatabase(app);
 export const getMeetings = async(data) => {
   
   // Obtiene una referencia a la base de datos en tiempo real de Firebase
-  const database = getDatabase();
+  //const database = getDatabase();
   const dataRef = ref(db, `user/meetings/${data}`);
   console.log(data, "dataref: ",dataRef);
 
@@ -65,7 +65,7 @@ export const getMeetings = async(data) => {
 export const getAvailabilities = async(data) => {
   
   // Obtiene una referencia a la base de datos en tiempo real de Firebase
-  const database = getDatabase();
+  //const database = getDatabase();
   const dataRef = ref(db, `user/availabilities/${data}`);
   console.log(data, "dataref: ",dataRef);
 
@@ -91,10 +91,6 @@ export const getAvailabilities = async(data) => {
 //Create reservation
 export function writeReservation(id, start, end, email, title) {
   const db = getDatabase();
-  /*set(ref(db, 'user/availabilities/' + id+ "/"+start+end), {
-    start: start,
-    end: end
-  });*/
     set(ref(db, 'user/meetings/' + id+ "/"+start+end), {
       start: start,
       end: end,
@@ -118,10 +114,6 @@ export function writeReservation(id, start, end, email, title) {
 //Create availabilities
 export function writeUserData(id, start, end) {
   const db = getDatabase();
-  /*set(ref(db, 'user/availabilities/' + id+ "/"+start+end), {
-    start: start,
-    end: end
-  });*/
     set(ref(db, 'user/availabilities/' + id+ "/"+start+end), {
       start: start,
       end: end,
@@ -139,7 +131,7 @@ export function writeUserData(id, start, end) {
     });
 }
 
-
+//delete available dates that are already scheduled
 export function deleteData(id, start, end) {
   const db = getDatabase();
   const itemIdToDelete = start+end; 
@@ -158,7 +150,10 @@ export function deleteData(id, start, end) {
 
 
   export const handleGoogleLogin = async () => {
+  
     
+
+  //Sign in with google (method not finished, nice to have)
   signInWithPopup(auth, provider)
   .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
