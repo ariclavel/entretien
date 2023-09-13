@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/home/qrGenerate" element={<Schedule />} />
-        <Route path="/home/qrCreate" element={<ShowMeetings />} />
+        <Route path="/home/schedule" element={<Schedule />} />
+        <Route path="/home/showMeetings" element={<ShowMeetings />} />
       </Routes>
     </Router>
     </div>
