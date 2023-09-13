@@ -108,8 +108,11 @@ export function writeUserData(id, start, end) {
 
 
 export function deleteData(id, start, end) {
-  const itemIdToDelete = start+end; // Replace with the actual ID
-  const itemRefToDelete = ref(database, `user/availabilities/${id}/${itemIdToDelete}`);
+  const db = getDatabase();
+  const itemIdToDelete = start+end; 
+  console.log(id, start+end);
+  const itemRefToDelete = ref(db, `user/availabilities/${id}/${itemIdToDelete}`);
+  console.log(itemRefToDelete);
   remove(itemRefToDelete)
     .then(() => {
       console.log('Item deleted successfully.');

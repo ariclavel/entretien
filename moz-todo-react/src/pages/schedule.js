@@ -78,9 +78,7 @@ const Schedule= () =>{
         //need the topic of the meeting and the email of the person
         setShowForm(true);
         SetCreateMeeting(obj);
-        //Erase the hour from availables
-        setAvailables(availables.filter((element) => element.key!==createMeeting.key)); 
-
+        
         /*availables.filter((element,index)=>){
             element.key!==key;
 
@@ -119,7 +117,10 @@ const Schedule= () =>{
         console.log(createMeeting);
         writeReservation(completeDate,createMeeting.start,createMeeting.end,email,title)
         //delete availability
-        deleteData(createMeeting.key, createMeeting.start, createMeeting.end );
+        //Erase the hour from availables
+        setAvailables(availables.filter((element) => element.key!==createMeeting.key)); 
+
+        deleteData(completeDate, createMeeting.start, createMeeting.end );
         
         setOpen(false);
         setShowForm(false);
