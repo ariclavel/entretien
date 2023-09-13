@@ -17,6 +17,7 @@ import { getAvailabilities } from "../database/db";
 const Schedule= () =>{
     //navigation
     const navigate = useNavigate();
+    
     //Today s date
    
     let fechaHoy = new Date();
@@ -52,7 +53,8 @@ const Schedule= () =>{
         
         //Available dates with query
         let arr = getAvailabilities(completeDate);
-        setAvailables(arr);
+        
+        setAvailables(getAvailabilities(completeDate));
     };
     const chooseSchedule = (key) =>{
         //need the topic of the meeting and the email of the person
@@ -99,7 +101,7 @@ const Schedule= () =>{
     }
     //Come back to home page
     const goHome = () =>{
-        navigate("/home")
+        navigate("/")
     }
     //alert confirmation
     const [confirRes, setConfirRes] = useState(false);

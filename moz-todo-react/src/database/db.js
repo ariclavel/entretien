@@ -1,6 +1,14 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp} from "firebase/app";
 import { getDatabase, ref, onValue,set, get, child} from "firebase/database";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+
+
+// To apply the default browser preference instead of explicitly setting it.
+// auth.useDeviceLanguage();
+//import firebase from 'firebase/app';
 //const firebase = require('firebase');
+//require('firebase/auth'); 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
@@ -18,21 +26,31 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+const provider = new GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+
+const auth = getAuth();
+auth.languageCode = 'it';
+
 
 // Initialize Realtime Database and get a reference to the service
 const db = getDatabase(app);
 
-export const getAvailabilities = async() => {
-  console.log("Holi")
+export const getAvailabilities = async(data) => {
+  
   //const db = getDatabase();
-  const userId = 'availabilities/09-13-2023';
+  const avId = 'availabilities/'+data;
+  console.log(data, avId)
   
   const dbRef = ref(getDatabase());
-  get(child(dbRef, `user/${userId}`)).then((snapshot) => {
+  get(child(dbRef, `user/${avId}`)).then((snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
+      return snapshot.val();
     } else {
       console.log("No data available");
+      return [];
     }
   }).catch((error) => {
     console.error(error);
@@ -58,6 +76,9 @@ export function writeUserData(id, start, end) {
       console.log("mistake");
     });
 }
+
+
+/*
 export function deleteData(id, start, end) {
   const db = getDatabase();
 
@@ -81,4 +102,28 @@ export function deleteData(id, start, end) {
 
     return update(ref(db), updates);
   }
+*/
+
+  export const handleGoogleLogin = async () => {
+    
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+  };
 
