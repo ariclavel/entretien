@@ -13,11 +13,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import { writeUserData } from "../database/db";
 import { getAvailabilities } from "../database/db";
+import { writeReservation } from "../database/db";
 
 const Schedule= () =>{
     //navigation
     const navigate = useNavigate();
-    
+
     //Today s date
    
     let fechaHoy = new Date();
@@ -93,8 +94,10 @@ const Schedule= () =>{
         //console.log("date", date);
         
         //create reservation
-        writeUserData(date,"13","15")
+        writeReservation(date,"13","15",email,title)
         //delete availability
+
+        
         setOpen(false);
         setShowForm(false);
 

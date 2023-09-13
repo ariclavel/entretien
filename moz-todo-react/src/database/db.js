@@ -56,8 +56,32 @@ export const getAvailabilities = async(data) => {
     console.error(error);
   });
 };
+//Create reservation
+export function writeReservation(id, start, end, email, title) {
+  const db = getDatabase();
+  /*set(ref(db, 'user/availabilities/' + id+ "/"+start+end), {
+    start: start,
+    end: end
+  });*/
+    set(ref(db, 'user/meetings/' + id+ "/"+start+end), {
+      start: start,
+      end: end,
+      email: email,
+      title: title
+
+    })
+    .then(() => {
+      console.log("data saved successfully")
+      // Data saved successfully!
+    })
+    .catch((error) => {
+      // The write failed...
+      console.log("mistake");
+    });
+}
+
+//Create availabilities
 export function writeUserData(id, start, end) {
-  console.log("esteeee")
   const db = getDatabase();
   /*set(ref(db, 'user/availabilities/' + id+ "/"+start+end), {
     start: start,
