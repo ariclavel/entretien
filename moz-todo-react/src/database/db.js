@@ -31,6 +31,37 @@ const db = getDatabase(app);
 
 
 //get availabilities
+export const getMeetings = async(data) => {
+  
+  // Obtiene una referencia a la base de datos en tiempo real de Firebase
+  const database = getDatabase();
+  const dataRef = ref(db, `user/meetings/${data}`);
+  console.log(data, "dataref: ",dataRef);
+
+  try {
+    const snapshot = await get(dataRef);
+    if (snapshot.exists()) {
+      const dataObject = snapshot.val();
+
+      // Convierte el objeto en un array de objetos
+      const dataArray = Object.values(dataObject);
+
+      // Ahora dataArray contiene los objetos como un array
+      console.log(dataArray, dataArray[0]);
+      return dataArray;
+    } else {
+      return [];
+      console.log('No se encontraron datos.');
+    }
+  } catch (error) {
+    console.error('Error al obtener datos:', error);
+  }
+};
+
+
+
+
+//get availabilities
 export const getAvailabilities = async(data) => {
   
   // Obtiene una referencia a la base de datos en tiempo real de Firebase
@@ -68,7 +99,8 @@ export function writeReservation(id, start, end, email, title) {
       start: start,
       end: end,
       email: email,
-      title: title
+      title: title,
+      id: start+end
 
     })
     .then(() => {
@@ -92,7 +124,8 @@ export function writeUserData(id, start, end) {
   });*/
     set(ref(db, 'user/availabilities/' + id+ "/"+start+end), {
       start: start,
-      end: end
+      end: end,
+      id: start+end
     })
     .then(() => {
       console.log("data saved successfully");

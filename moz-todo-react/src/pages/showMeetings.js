@@ -19,6 +19,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { getMeetings } from "../database/db";
 
 
 const ShowMeetings= () =>{
@@ -34,11 +35,41 @@ const ShowMeetings= () =>{
         setAv(true);
 
     }
-    //show meetings
+    //rows
+    const [rows,SetRows] = useState([]);
     const [meeting, setMeeting] = useState(false);
-    const showMeetings = () =>{
+    //show meetings
+    const [cargando, setCargando] = useState(false);
+    const showMeetings =async () =>{
+        
         setMeeting(true);
-    }
+        //query to see meetings
+
+
+        
+        try {
+            // Marcar que la consulta está en progreso
+            setCargando(true);
+      
+            // Realizar la consulta a la base de datos
+            const response = await getMeetings(dateMeeting);;
+            //const data = await response.json();
+      
+            // Actualizar el estado con los datos y marcar que la carga ha terminado
+            SetRows(await response);
+          } catch (error) {
+            console.error('Error al realizar la consulta:', error);
+          } finally {
+            // Marcar que la consulta ha terminado
+            setCargando(false);
+          }
+        
+    };
+
+    
+    
+
+
     //handle inputForm
     //handle inputs
     const [start, setStart] = useState("");
@@ -83,12 +114,7 @@ const ShowMeetings= () =>{
         setDateMeeting(event.target.value); 
         
     };
-    //rows
-    const rows = [
-        { id: 1, name: 'John Doe', email: 'john@example.com' },
-        { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
-        // Agrega más filas según sea necesario
-      ];
+    
       
       return (
         <div>
@@ -154,7 +180,7 @@ const ShowMeetings= () =>{
             <form>
                 <label>
                 
-                &nbsp;&nbsp;&nbsp;&nbsp;Date (year-month-day format)  :&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Date Meetings you want to see (year-month-day format)  :&nbsp;&nbsp;
                     <input type="date" name="dateMeeting" value={dateMeeting} onChange={handleDateMeeting} />
                 </label>
             </form>
@@ -172,17 +198,19 @@ const ShowMeetings= () =>{
                 <Table>
                     <TableHead>
                     <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Email</TableCell>
+                        <TableCell>Meeting's person</TableCell>
+                        <TableCell>Subject</TableCell>
+                        <TableCell>Start Hour</TableCell>
+                        <TableCell>End Hour</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {rows.map((row) => (
                         <TableRow key={row.id}>
-                        <TableCell>{row.id}</TableCell>
-                        <TableCell>{row.name}</TableCell>
                         <TableCell>{row.email}</TableCell>
+                        <TableCell>{row.title}</TableCell>
+                        <TableCell>{row.start}</TableCell>
+                        <TableCell>{row.end}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
