@@ -40,7 +40,7 @@ const Schedule= () =>{
     
 
     const goDay = () =>{
-        
+        console.log(test());
         //Available dates with query
         let arr = [{key: "popo", name: "holi"},{key: "popis", name: "ari"}];
         setAvailables(arr);
@@ -80,7 +80,7 @@ const Schedule= () =>{
     const reservation = () =>{
         console.log("reservation");
         //console.log("date", date);
-        console.log(test());
+        
         //create reservation
         writeUserData(date,"13","15")
         //delete availability
