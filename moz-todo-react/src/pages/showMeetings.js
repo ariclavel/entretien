@@ -94,7 +94,7 @@ const ShowMeetings= () =>{
           <h1>Iniciar sesión con Google</h1>
           <GoogleButton onClick={handleGoogleLogin} />
           
-          {!meeting && !av && (<LittleButton content="Go back"  size="large" c='#4169E1' action={goHome} />)}
+          { !av && (<LittleButton content="Go back"  size="large" c='#4169E1' action={goHome} />)}
           {!meeting && !av && (<LittleButton content="Create availabilities"  size="large" c='#4169E1' action={createAv} />)} 
           {av && (
                 <div>
@@ -166,6 +166,7 @@ const ShowMeetings= () =>{
             meeting &&
             (
                 <TableContainer component={Paper}>
+                    <br></br><br></br><br></br>
                 <Table>
                     <TableHead>
                     <TableRow>
