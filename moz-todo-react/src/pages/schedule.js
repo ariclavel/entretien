@@ -59,10 +59,10 @@ const Schedule= () =>{
       
             // Realizar la consulta a la base de datos
             const response = await getAvailabilities(completeDate);
-            const data = await response.json();
+            //const data = await response.json();
       
             // Actualizar el estado con los datos y marcar que la carga ha terminado
-            setAvailables(data);
+            setAvailables(await response);
           } catch (error) {
             console.error('Error al realizar la consulta:', error);
           } finally {
@@ -141,7 +141,7 @@ const Schedule= () =>{
             
             availables.map((element) => {
                
-                return (<LittleButton content={element.name}  size="large" c='#4169E1' action={()=>chooseSchedule(element.key)} />)
+                return (<LittleButton content={element.start+"-"+element.end}  size="large" c='#4169E1' action={()=>chooseSchedule(element.key)} />)
                   
               
              })}

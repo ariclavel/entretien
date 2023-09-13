@@ -35,7 +35,7 @@ export const getAvailabilities = async(data) => {
   
   // Obtiene una referencia a la base de datos en tiempo real de Firebase
   const database = getDatabase();
-  const dataRef = ref(db, `user/availabilities`);
+  const dataRef = ref(db, `user/availabilities/${data}`);
   console.log(data, "dataref: ",dataRef);
 
   try {
@@ -47,28 +47,15 @@ export const getAvailabilities = async(data) => {
       const dataArray = Object.values(dataObject);
 
       // Ahora dataArray contiene los objetos como un array
-      console.log(dataArray);
+      console.log(dataArray, dataArray[0]);
+      return dataArray;
     } else {
+      return [];
       console.log('No se encontraron datos.');
     }
   } catch (error) {
     console.error('Error al obtener datos:', error);
   }
-  
-  
-  /*const dbRef = ref(getDatabase());
-  get(child(dbRef, `user/${avId}`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val().8:0013:00);
-      
-      return snapshot.val();
-    } else {
-      console.log("No data available");
-      return {};
-    }
-  }).catch((error) => {
-    console.error(error);
-  });*/
 };
 //Create reservation
 export function writeReservation(id, start, end, email, title) {
