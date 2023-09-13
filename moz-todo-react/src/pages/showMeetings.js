@@ -19,6 +19,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { writeUserData } from "../database/db";
 
 const ShowMeetings= () =>{
     //navigation
@@ -69,7 +70,7 @@ const ShowMeetings= () =>{
     }
     //FOR RESERVATIONS ON DATABASE
     const reservation = () => {
-        console.log(dateMeeting)
+        writeUserData(date,start,end);
         setOpen(false);
         setAv(false);
         setConf(false);
@@ -99,6 +100,7 @@ const ShowMeetings= () =>{
           {av && (
                 <div>
                 <form>
+                <br></br><br></br><br></br>
                 <label>
                     Start hour :&nbsp;&nbsp;
                     <input type="text" name="start" value={start} onChange={handleStart} />
