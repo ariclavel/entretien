@@ -11,6 +11,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
+import { writeUserData } from "../database/db";
+import { test } from "../database/db";
 
 const Schedule= () =>{
     //navigation
@@ -26,7 +28,7 @@ const Schedule= () =>{
     //console.log(fechaFormatoYMD);
 
     //DB
-    const [availables, setAvailables] = useState([{key: "1", name: "perra"}]);
+    const [availables, setAvailables] = useState([]);
     //date
     const [date, setDate] = useState(dayjs(fechaFormatoYMD));
     //form bool
@@ -77,6 +79,10 @@ const Schedule= () =>{
    
     const reservation = () =>{
         console.log("reservation");
+        console.log(test());
+        //create reservation
+        //writeUserData("09-16-2023","13","15")
+        //delete availability
         setOpen(false);
         setShowForm(false);
 
