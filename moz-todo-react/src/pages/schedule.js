@@ -72,7 +72,8 @@ const Schedule= () =>{
         
     };
     const [createMeeting, SetCreateMeeting] = useState({});
-    const chooseSchedule = (key, obj) =>{
+    const chooseSchedule = (obj) =>{
+        console.log(obj)
         //need the topic of the meeting and the email of the person
         setShowForm(true);
         SetCreateMeeting(obj);
@@ -108,9 +109,13 @@ const Schedule= () =>{
     const reservation = () =>{
         console.log("reservation");
         //console.log("date", date);
-        
+        //transform date
+        const month = String(date.$M+ 1).padStart(2, '0'); // El mes se indexa desde 0, por lo que debes sumar 1
+        const day = String(date.$D).padStart(2, '0');
+        const completeDate = `${date.$y}-${month}-${day}`;
         //create reservation
-        writeReservation(date,createMeeting.start,createMeeting.end,email,title)
+        console.log(createMeeting);
+        writeReservation(completeDate,createMeeting.start,createMeeting.end,email,title)
         //delete availability
 
         
