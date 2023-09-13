@@ -82,7 +82,7 @@ const Schedule= () =>{
         //console.log("date", date);
         console.log(test());
         //create reservation
-        writeUserData("09-16-2023","13","15")
+        writeUserData(date,"13","15")
         //delete availability
         setOpen(false);
         setShowForm(false);
