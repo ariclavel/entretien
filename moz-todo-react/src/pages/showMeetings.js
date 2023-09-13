@@ -12,6 +12,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import { writeUserData } from "../database/db";
 import { getAvailabilities } from "../database/db";
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 const ShowMeetings= () =>{
     //navigation
@@ -62,12 +69,26 @@ const ShowMeetings= () =>{
     }
     //FOR RESERVATIONS ON DATABASE
     const reservation = () => {
+        console.log(dateMeeting)
         setOpen(false);
         setAv(false);
         setConf(false);
         
         console.log("reserv");
     }
+    //MEETINGS
+    const [dateMeeting, setDateMeeting] = useState("");
+    const handleDateMeeting = (event) => {
+        setDateMeeting(event.target.value); 
+        
+    };
+    //rows
+    const rows = [
+        { id: 1, name: 'John Doe', email: 'john@example.com' },
+        { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+        // Agrega más filas según sea necesario
+      ];
+      
       return (
         <div>
           <h1>Iniciar sesión con Google</h1>
@@ -90,7 +111,7 @@ const ShowMeetings= () =>{
                 <label>
                 
                 &nbsp;&nbsp;&nbsp;&nbsp;Date (year-month-day format)  :&nbsp;&nbsp;
-                    <input type="text" name="date" value={date} onChange={handleDate} />
+                    <input type="date" name="date" value={date} onChange={handleDate} />
                 </label>
                 
                 <LittleButton content="Create availabilitie"  size="large" c='#4169E1' action={handleClickOpen} />
@@ -125,7 +146,47 @@ const ShowMeetings= () =>{
                 </form>
                 </div>
             )}
-          {!meeting && !av && (<LittleButton content="Meetings"  size="large" c='#4169E1' action={showMeetings} />)} 
+          {!meeting && !av && (
+            <div>
+                <br></br><br></br><br></br>
+            <form>
+                <label>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;Date (year-month-day format)  :&nbsp;&nbsp;
+                    <input type="date" name="dateMeeting" value={dateMeeting} onChange={handleDateMeeting} />
+                </label>
+            </form>
+           
+            <LittleButton content="Meetings"  size="large" c='#4169E1' action={showMeetings} />
+            
+          
+          </div>)} 
+          
+          {
+            meeting &&
+            (
+                <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                    <TableRow>
+                        <TableCell>ID</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Email</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {rows.map((row) => (
+                        <TableRow key={row.id}>
+                        <TableCell>{row.id}</TableCell>
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell>{row.email}</TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+                </TableContainer>
+            )
+          }
           {meeting &&
           <h1>Meetings</h1>
           }
