@@ -71,11 +71,13 @@ const Schedule= () =>{
           }
         
     };
-    const chooseSchedule = (key) =>{
+    const [createMeeting, SetCreateMeeting] = useState({});
+    const chooseSchedule = (key, obj) =>{
         //need the topic of the meeting and the email of the person
         setShowForm(true);
+        SetCreateMeeting(obj);
         //Erase the hour from availables
-        setAvailables(availables.filter((element) => element.key!==key)); 
+        setAvailables(availables.filter((element) => element.key!==createMeeting.key)); 
         /*availables.filter((element,index)=>){
             element.key!==key;
 
@@ -108,7 +110,7 @@ const Schedule= () =>{
         //console.log("date", date);
         
         //create reservation
-        writeReservation(date,"13","15",email,title)
+        writeReservation(date,createMeeting.start,createMeeting.end,email,title)
         //delete availability
 
         
@@ -141,7 +143,7 @@ const Schedule= () =>{
             
             availables.map((element) => {
                
-                return (<LittleButton content={element.start+"-"+element.end}  size="large" c='#4169E1' action={()=>chooseSchedule(element.key)} />)
+                return (<LittleButton content={element.start+"-"+element.end}  size="large" c='#4169E1' action={()=>chooseSchedule({"start": element.start, "end":element.end, "key":element.key})} />)
                   
               
              })}
