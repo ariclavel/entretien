@@ -43,12 +43,9 @@ const ShowMeetings= () =>{
     const showMeetings =async () =>{
         
         setMeeting(true);
-        //query to see meetings
-
-
-        
+        //query to see meetings        
         try {
-            // Marcar que la consulta está en progreso
+            // query in progress
             setCargando(true);
       
             // Realizar la consulta a la base de datos
@@ -66,12 +63,7 @@ const ShowMeetings= () =>{
         
     };
 
-    
-    
-
-
     //handle inputForm
-    //handle inputs
     const [start, setStart] = useState("");
     const handleStart = (event) => {
         setStart(event.target.value); 
@@ -105,8 +97,6 @@ const ShowMeetings= () =>{
         setOpen(false);
         setAv(false);
         setConf(false);
-        
-        console.log("reserv");
     }
     //MEETINGS
     const [dateMeeting, setDateMeeting] = useState("");

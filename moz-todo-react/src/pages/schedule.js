@@ -11,7 +11,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
-import { writeUserData } from "../database/db";
 import { getAvailabilities } from "../database/db";
 import { writeReservation } from "../database/db";
 import { deleteData } from "../database/db";
@@ -20,21 +19,15 @@ const Schedule= () =>{
     //navigation
     const navigate = useNavigate();
 
-    //Today s date
-   
+    //Today s date format
     let fechaHoy = new Date();
     const year = fechaHoy.getFullYear();
-    const month = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // El mes se indexa desde 0, por lo que debes sumar 1
+    const month = String(fechaHoy.getMonth() + 1).padStart(2, '0'); 
     const day = String(fechaHoy.getDate()).padStart(2, '0');
     
     const fechaFormatoYMD = `${year}-${month}-${day}`;
-    
-    
 
-    
-    //console.log(fechaFormatoYMD);
-
-    //DB
+    //DB of availables slots
     const [availables, setAvailables] = useState([]);
     //date
     const [date, setDate] = useState(dayjs(fechaFormatoYMD));
@@ -55,14 +48,13 @@ const Schedule= () =>{
         const completeDate = `${date.$y}-${month}-${day}`;
         
         try {
-            // Marcar que la consulta está en progreso
+            // Consult in progress
             setCargando(true);
       
-            // Realizar la consulta a la base de datos
+            // sEND QUERY
             const response = await getAvailabilities(completeDate);
-            //const data = await response.json();
       
-            // Actualizar el estado con los datos y marcar que la carga ha terminado
+            // SET THE AVAILABILITY ARRAY WITH THE RESULT QUERY
             setAvailables(await response);
           } catch (error) {
             console.error('Error al realizar la consulta:', error);
@@ -74,15 +66,11 @@ const Schedule= () =>{
     };
     const [createMeeting, SetCreateMeeting] = useState({});
     const chooseSchedule = (obj) =>{
-        console.log(obj)
+        //console.log(obj)
         //need the topic of the meeting and the email of the person
         setShowForm(true);
         SetCreateMeeting(obj);
         
-        /*availables.filter((element,index)=>){
-            element.key!==key;
-
-        })*/
     };
     //handle inputs
     const handleEmail = (event) => {
@@ -104,13 +92,12 @@ const Schedule= () =>{
         setShowForm(false);
     };
 
-    // reservar
+    // reservate a MEETING
    
     const reservation = () =>{
-        console.log("reservation");
         //console.log("date", date);
         //transform date
-        const month = String(date.$M+ 1).padStart(2, '0'); // El mes se indexa desde 0, por lo que debes sumar 1
+        const month = String(date.$M+ 1).padStart(2, '0'); 
         const day = String(date.$D).padStart(2, '0');
         const completeDate = `${date.$y}-${month}-${day}`;
         //create reservation
