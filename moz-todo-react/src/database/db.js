@@ -22,7 +22,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service
 const db = getDatabase(app);
 
-export const test = async() => {
+export const getAvailabilities = async() => {
   console.log("Holi")
   //const db = getDatabase();
   const userId = 'availabilities/09-13-2023';

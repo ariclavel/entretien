@@ -12,19 +12,23 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import { writeUserData } from "../database/db";
-import { test } from "../database/db";
+import { getAvailabilities } from "../database/db";
 
 const Schedule= () =>{
     //navigation
     const navigate = useNavigate();
     //Today s date
-    const fechaHoy = new Date();
+   
+    let fechaHoy = new Date();
     const year = fechaHoy.getFullYear();
     const month = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // El mes se indexa desde 0, por lo que debes sumar 1
     const day = String(fechaHoy.getDate()).padStart(2, '0');
     
-
     const fechaFormatoYMD = `${year}-${month}-${day}`;
+    
+    
+
+    
     //console.log(fechaFormatoYMD);
 
     //DB
@@ -40,9 +44,14 @@ const Schedule= () =>{
     
 
     const goDay = () =>{
-        console.log(test());
+        //const arr = availabilitiesGet(date);
+       
+        const month = String(date.$M+ 1).padStart(2, '0'); // El mes se indexa desde 0, por lo que debes sumar 1
+        const day = String(date.$D).padStart(2, '0');
+        const completeDate = `${date.$y}-${month}-${day}`;
+        
         //Available dates with query
-        let arr = [{key: "popo", name: "holi"},{key: "popis", name: "ari"}];
+        let arr = getAvailabilities(completeDate);
         setAvailables(arr);
     };
     const chooseSchedule = (key) =>{
@@ -94,6 +103,9 @@ const Schedule= () =>{
     }
     //alert confirmation
     const [confirRes, setConfirRes] = useState(false);
+    const confirmResponse = () => {
+        setConfirRes(true);
+    }
     //calendar
     return (
         
@@ -141,7 +153,7 @@ const Schedule= () =>{
                         <DialogActions>
                         <LittleButton  content="Cancel"  size="large" c='#4169E1' action={handleClose} color="primary">
                         </LittleButton>
-                        <LittleButton  content="Confirm"  size="large" c='#4169E1' action={setConfirRes(true)} color="primary">
+                        <LittleButton  content="Confirm"  size="large" c='#4169E1' action={confirmResponse} color="primary">
                         </LittleButton>
                         <Dialog open={confirRes} onClose={reservation}>
                             <DialogTitle>Confirmation</DialogTitle>
