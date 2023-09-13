@@ -18,13 +18,36 @@ const Schedule= () =>{
     const fechaFormatoYMD = `${year}-${month}-${day}`;
     //console.log(fechaFormatoYMD);
 
+    //DB
+    const [availables, setAvailables] = useState([{key: "1", name: "perra"}]);
+    //date
     const [date, setDate] = useState(dayjs(fechaFormatoYMD));
+
+    const goDay = () =>{
+        
+        //Available dates with query
+        let arr = [{key: "popo", name: "holi"},{key: "popis", name: "ari"}];
+        setAvailables(arr);
+    }
+    const chooseSchedule = (id) =>{
+        //Erase the hour from availables
+    }
     //calendar
     return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
        <DateCalendar value={date} onChange={(newValue) => setDate(newValue)} />
        <div>
-            <LittleButton content= "Go to this date" size="large" c='#000000'  />
+            <LittleButton content= "Go to this date" size="large" c='#000000' action={goDay} />
+            
+            {availables.map((element) => {
+               
+             return (<LittleButton content={element.name}  size="large" c='#4169E1' action={(element.key)<={chooseSchedule}}  />)
+               
+           
+           })}
+            
+            
+            
             
         </div>
     </LocalizationProvider>

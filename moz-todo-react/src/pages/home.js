@@ -14,7 +14,7 @@ const Home = () =>{
           }}>
             <div>
             <Button content= "Schedule a meeting with me !" size="large" c='#000000' action={goSchedule} />
-            <Button content= "Take a look of " size="large" c='#000000'/>
+            <Button content= "Take a look of my schedule !" size="large" c='#000000'/>
             </div>
             
           </div>
