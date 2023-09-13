@@ -1,5 +1,5 @@
 import { initializeApp} from "firebase/app";
-import { getDatabase, ref, onValue,set, get, child} from "firebase/database";
+import { getDatabase, ref, onValue,set, get, child, remove} from "firebase/database";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 
@@ -107,31 +107,19 @@ export function writeUserData(id, start, end) {
 }
 
 
-/*
 export function deleteData(id, start, end) {
-  const db = getDatabase();
+  const itemIdToDelete = start+end; // Replace with the actual ID
+  const itemRefToDelete = ref(database, `user/availabilities/${id}/${itemIdToDelete}`);
+  remove(itemRefToDelete)
+    .then(() => {
+      console.log('Item deleted successfully.');
+    })
+    .catch((error) => {
+      console.error('Error deleting item:', error);
+    });
+   
+}
 
-    // A post entry.
-    const postData = {
-      author: username,
-      uid: uid,
-      body: body,
-      title: title,
-      starCount: 0,
-      authorPic: picture
-    };
-
-    // Get a key for a new Post.
-    const newPostKey = push(child(ref(db), 'posts')).key;
-
-    // Write the new post's data simultaneously in the posts list and the user's post list.
-    const updates = {};
-    updates['/posts/' + newPostKey] = postData;
-    updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-    return update(ref(db), updates);
-  }
-*/
 
   export const handleGoogleLogin = async () => {
     

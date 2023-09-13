@@ -14,6 +14,7 @@ import DialogActions from '@mui/material/DialogActions';
 import { writeUserData } from "../database/db";
 import { getAvailabilities } from "../database/db";
 import { writeReservation } from "../database/db";
+import { deleteData } from "../database/db";
 
 const Schedule= () =>{
     //navigation
@@ -79,6 +80,7 @@ const Schedule= () =>{
         SetCreateMeeting(obj);
         //Erase the hour from availables
         setAvailables(availables.filter((element) => element.key!==createMeeting.key)); 
+
         /*availables.filter((element,index)=>){
             element.key!==key;
 
@@ -117,7 +119,7 @@ const Schedule= () =>{
         console.log(createMeeting);
         writeReservation(completeDate,createMeeting.start,createMeeting.end,email,title)
         //delete availability
-
+        deleteData(createMeeting.key, createMeeting.start, createMeeting.end );
         
         setOpen(false);
         setShowForm(false);
