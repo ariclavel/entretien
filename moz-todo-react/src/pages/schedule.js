@@ -1,8 +1,8 @@
 import React from "react";
-import {useState } from "react";
+import {useState,useEffect } from "react";
 import LittleButton from "../components/LittleButton";
 import {useNavigate} from "react-router-dom";
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
@@ -44,18 +44,32 @@ const Schedule= () =>{
     const [title, setTitle] = useState("");
     //form shhow or not
     
-
-    const goDay = () =>{
+    //GET AVAILABILITIES
+    const [cargando, setCargando] = useState(false);
+    const goDay =async () =>{
         //const arr = availabilitiesGet(date);
        
         const month = String(date.$M+ 1).padStart(2, '0'); // El mes se indexa desde 0, por lo que debes sumar 1
         const day = String(date.$D).padStart(2, '0');
         const completeDate = `${date.$y}-${month}-${day}`;
         
-        //Available dates with query
-        let arr = getAvailabilities(completeDate);
+        try {
+            // Marcar que la consulta está en progreso
+            setCargando(true);
+      
+            // Realizar la consulta a la base de datos
+            const response = await getAvailabilities(completeDate);
+            const data = await response.json();
+      
+            // Actualizar el estado con los datos y marcar que la carga ha terminado
+            setAvailables(data);
+          } catch (error) {
+            console.error('Error al realizar la consulta:', error);
+          } finally {
+            // Marcar que la consulta ha terminado
+            setCargando(false);
+          }
         
-        setAvailables(getAvailabilities(completeDate));
     };
     const chooseSchedule = (key) =>{
         //need the topic of the meeting and the email of the person

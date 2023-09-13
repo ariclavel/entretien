@@ -3,14 +3,6 @@ import { getDatabase, ref, onValue,set, get, child} from "firebase/database";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 
-
-// To apply the default browser preference instead of explicitly setting it.
-// auth.useDeviceLanguage();
-//import firebase from 'firebase/app';
-//const firebase = require('firebase');
-//require('firebase/auth'); 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
   apiKey: "AIzaSyDytVqWNB8R8-Xtawrl9qKW7j7U2updZAo",
   authDomain: "interview-b2a24.firebaseapp.com",
@@ -37,24 +29,46 @@ auth.languageCode = 'it';
 // Initialize Realtime Database and get a reference to the service
 const db = getDatabase(app);
 
+
+//get availabilities
 export const getAvailabilities = async(data) => {
   
-  //const db = getDatabase();
-  const avId = 'availabilities/'+data;
-  console.log(data, avId)
+  // Obtiene una referencia a la base de datos en tiempo real de Firebase
+  const database = getDatabase();
+  const dataRef = ref(db, `user/availabilities`);
+  console.log(data, "dataref: ",dataRef);
+
+  try {
+    const snapshot = await get(dataRef);
+    if (snapshot.exists()) {
+      const dataObject = snapshot.val();
+
+      // Convierte el objeto en un array de objetos
+      const dataArray = Object.values(dataObject);
+
+      // Ahora dataArray contiene los objetos como un array
+      console.log(dataArray);
+    } else {
+      console.log('No se encontraron datos.');
+    }
+  } catch (error) {
+    console.error('Error al obtener datos:', error);
+  }
   
-  const dbRef = ref(getDatabase());
+  
+  /*const dbRef = ref(getDatabase());
   get(child(dbRef, `user/${avId}`)).then((snapshot) => {
     if (snapshot.exists()) {
-      console.log(snapshot.val());
+      console.log(snapshot.val().8:0013:00);
+      
       return snapshot.val();
     } else {
       console.log("No data available");
-      return [];
+      return {};
     }
   }).catch((error) => {
     console.error(error);
-  });
+  });*/
 };
 //Create reservation
 export function writeReservation(id, start, end, email, title) {
@@ -72,11 +86,13 @@ export function writeReservation(id, start, end, email, title) {
     })
     .then(() => {
       console.log("data saved successfully")
+      return true;
       // Data saved successfully!
     })
     .catch((error) => {
       // The write failed...
       console.log("mistake");
+      return false;
     });
 }
 
@@ -92,12 +108,14 @@ export function writeUserData(id, start, end) {
       end: end
     })
     .then(() => {
-      console.log("data saved successfully")
+      console.log("data saved successfully");
+      return true;
       // Data saved successfully!
     })
     .catch((error) => {
       // The write failed...
       console.log("mistake");
+      return false;
     });
 }
 
