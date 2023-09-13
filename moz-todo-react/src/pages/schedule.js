@@ -79,9 +79,10 @@ const Schedule= () =>{
    
     const reservation = () =>{
         console.log("reservation");
+        //console.log("date", date);
         console.log(test());
         //create reservation
-        //writeUserData("09-16-2023","13","15")
+        writeUserData("09-16-2023","13","15")
         //delete availability
         setOpen(false);
         setShowForm(false);
@@ -91,6 +92,8 @@ const Schedule= () =>{
     const goHome = () =>{
         navigate("/home")
     }
+    //alert confirmation
+    const [confirRes, setConfirRes] = useState(false);
     //calendar
     return (
         
@@ -138,8 +141,20 @@ const Schedule= () =>{
                         <DialogActions>
                         <LittleButton  content="Cancel"  size="large" c='#4169E1' action={handleClose} color="primary">
                         </LittleButton>
-                        <LittleButton  content="Confirm"  size="large" c='#4169E1' action={reservation} color="primary">
+                        <LittleButton  content="Confirm"  size="large" c='#4169E1' action={setConfirRes(true)} color="primary">
                         </LittleButton>
+                        <Dialog open={confirRes} onClose={reservation}>
+                            <DialogTitle>Confirmation</DialogTitle>
+                                <DialogContent>
+                                <DialogContentText>
+                                    Reservation Done!
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <LittleButton  content="Confirm"  size="large" c='#4169E1' action={reservation} color="primary"></LittleButton>
+                                </DialogActions>
+                        </Dialog>
+
                     </DialogActions>
                 </Dialog>
                 
