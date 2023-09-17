@@ -108,7 +108,7 @@ const ShowMeetings= () =>{
       
       return (
         <div>
-          <h1>Iniciar sesión con Google</h1>
+          <h1>Log-in with google</h1>
           <GoogleButton onClick={handleGoogleLogin} />
           
           { !av && (<LittleButton content="Go back"  size="large" c='#4169E1' action={goHome} />)}
