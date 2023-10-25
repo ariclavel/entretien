@@ -11,7 +11,7 @@ const Home = () =>{
         navigate('schedule');
     }
     const goShow=() =>{
-      navigate('showMeetings');
+      navigate('cv');
   }
     return(
         <div style={{ 

@@ -1,0 +1,7 @@
+.circular-border {
+    width: 100px; /* Adjust the size as needed */
+    height: 100px; /* Adjust the size as needed */
+    border-radius: 50%; /* Creates a circular shape */
+    border: 2px solid #333; /* Change the border color and width as needed */
+    object-fit: cover; /* Ensures the image covers the circular area */
+  }
