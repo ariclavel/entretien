@@ -74,6 +74,19 @@ const Cv= () =>{
            <img src={image} className="circular-border" alt="Circular Image" width={100} height={100} />
         </Box>
 
+        <Box sx={{ 
+            color: 'text.secondary',
+            bgcolor: 'background.paper',
+            borderRadius: 5,
+            p:5,
+            boxShadow: 5,
+            minWidth: 400,
+            padding: 4
+        }}>
+           PHP, Javascript (React, Material UI), Python (Flask, Agentpy, Scikit-learn, TensorFlow),Matlab, C++.
+Github, Trello, SCRUM MySQL, MongoDB, Firebase, Deployment in IBM Cloud.
+        </Box>
+
         
         <Title title = 'Education'
         > 
