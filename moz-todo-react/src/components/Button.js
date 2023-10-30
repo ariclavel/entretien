@@ -2,9 +2,9 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 
-export default function ButtonUsage({content, size, c, action}) {
+export default function ButtonUsage({content, size, c, action, bc}) {
     const buttonStyle = {
-        backgroundColor: '#E0E0E0',
+        backgroundColor: bc,
         // Cambiamos el color según el prop
         color: c,
         borderRadius: '5px',

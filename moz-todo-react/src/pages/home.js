@@ -1,9 +1,9 @@
 import React from "react";
-import {useState } from "react";
 import Button from "../components/Button";
 import {useNavigate} from "react-router-dom";
-
+import { Box} from '@mui/system';
 const Home = () =>{
+ 
     //navigation
     const navigate = useNavigate();
     
@@ -15,11 +15,15 @@ const Home = () =>{
   }
     return(
         <div style={{ 
-            backgroundImage: `url("https://live.staticflickr.com/5196/5904923542_27d6f74c68.jpg")` 
+            backgroundImage: `url("http://1.bp.blogspot.com/-wgoz0O7mg44/Tt37inurhoI/AAAAAAAAHSc/KmKWz_Ko6SI/s1600/Windows-Vista-Azul.jpg")` 
           }}>
+            <Box sx={{ color: '#ffffff', fontSize: 34, fontWeight: 'medium',fontFamily: 'Elephant', padding: 4}}>
+                Ariana Ayaviri Clavel
+            </Box>
             <div>
-            <Button content= "Schedule a meeting with me !" size="large" c='#000000' action={goSchedule} />
-            <Button content= "Take a look of my schedule !" size="large" c='#000000' action={goShow} />
+            
+            <Button content= "Schedule a meeting with me !" size="medium" c='#ffffff' bc='#302c9b' action={goSchedule} />
+            <Button content= "CV" size="medium" c='#ffffff'bc = '#302c9b' action={goShow} />
             </div>
             
           </div>
