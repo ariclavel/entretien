@@ -15,7 +15,12 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import EmailIcon from '@mui/icons-material/Email';
-
+import Badge from '@mui/material/Badge';
+import ListIcon from "../components/ListIcon";
+import ToolTip from "../components/ToolTip";
+import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
+import WorkIcon from '@mui/icons-material/Work';
 const Cv= () =>{
   const readOnlyValue = 75;
  
@@ -53,11 +58,17 @@ const Cv= () =>{
           },
         },
       });
+
+      const dataList = [
+        {icon: "MSc’S DEGREE in computer science, École d´Ingénieurs Léonard De Vinci, ESILV", date: "Oct 2023- Oct 2024", pic: '2', place: 'Paris, France', link: 'https://www.devinci.fr/le-pole/ecoles/esilv-ecole-dingenieurs-paris-la-defense/'},
+        {icon: "BACHELOR’S DEGREE in computer science, Exchange Program, Institut Supérieur d´éléctronique de Paris, ISEP", date: "Sep 2022- Jan 2023", pic: '2', place: 'Paris, France', link: 'https://www.isep.fr/'},
+        {icon: "BACHELOR’S DEGREE in computer science, Tecnológico de Monterrey", date: "Jun 2019- Jun 2023", pic: '2', place: 'GDL, México', link: 'https://tec.mx/en'}
+      ]
     return(
       
-        <div>
+        
            
-    <ThemeProvider theme ={theme}>
+
     
       <Box
         sx={{
@@ -70,7 +81,9 @@ const Cv= () =>{
           border: 5
         }}
       >
+        <img src={image} className="circular-border" alt="Circular Image" width={100} height={100} />
         <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
+          
           Ariana Ayaviri Clavel
         </Box>
         <Box
@@ -87,6 +100,7 @@ const Cv= () =>{
           
           Computer Engineering/ MSc Computer Science
         </Box>
+        
         <Box sx={{ 
             color: 'text.secondary',
             bgcolor: 'background.paper',
@@ -97,35 +111,55 @@ const Cv= () =>{
             padding: 4,
             
         }}>
-           <img src={image} className="circular-border" alt="Circular Image" width={100} height={100} />
+           
            <br/>
            <br/>
-           <a href="arianaclavel19@gmail.com">
-              <EmailIcon style={{ fontSize: 36, color: 'black' }} />
-          </a>
-          <a href="www.linkedin.com/in/ariana-lisel-ayaviri-clavel-143428223">
-              <LinkedInIcon style={{ fontSize: 36, color: 'black' }} />
-          </a>
-          <a href="https://github.com/ariclavel">
-              <GitHubIcon style={{ fontSize: 36, color: 'black'}} />
-          </a>  
-          <a >
-              <PhoneEnabledIcon style={{ fontSize: 36, color: 'black'}} />
-              0766195498
-          </a>       
+           <Stack spacing={3} direction="row"  justifyContent="center"
+            sx={{ 
+              color: 'text.secondary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:5,
+              boxShadow: 5,
+              minWidth: 400,
+              padding: 4,
+              
+          }}
+           >
+             
+           <a href="mailto:arianaclavel19@gmail.com">
+              <Tooltip title="arianaclavel19@gmail.com">
+                <EmailIcon style={{ fontSize: 36, color: 'black' }} />
+              </Tooltip>
+            </a>
+            <a href="https://www.linkedin.com/in/ariana-lisel-ayaviri-clavel-143428223/">
+              <Tooltip title="Ariana Lisel Ayaviri Clavel">
+                <LinkedInIcon style={{ fontSize: 36, color: 'black' }} />
+              </Tooltip>
+            </a>
+            <a href="https://github.com/ariclavel">
+                <Tooltip title="ari.clavel">
+                  <GitHubIcon style={{ fontSize: 36, color: 'black'}} />
+                </Tooltip>
+            </a>  
+            <Tooltip title="0766195498">
+                <PhoneEnabledIcon style={{ fontSize: 36, color: 'black'}} />
+            </Tooltip>
+          </Stack>
+          
         </Box>
-
-        
-        
+         
+        <Box> 
+        <ListIcon data ={dataList} /> 
+        </Box>   
+      </Box>
+      
 
       
-        
-        
-      </Box>
-    </ThemeProvider>
+
             
             
-          </div>
+          
         
 
     )
