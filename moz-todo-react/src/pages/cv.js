@@ -148,10 +148,43 @@ const Cv= () =>{
           </Stack>
           
         </Box>
+        <Stack spacing={2} direction="row"  justifyContent="center"
+            sx={{ 
+              color: 'text.primary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:2,
+              boxShadow: 5,
+              minWidth: 100,
+              padding: 1,
+              fontSize: 17,
+              fontWeight: 'bold',
+              
+          }}
+           >
+              Education
+           </Stack>
+        <Stack spacing={3} direction="row"  justifyContent="center"
+            sx={{ 
+              color: 'text.secondary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:5,
+              boxShadow: 5,
+              minWidth: 400,
+              padding: 4,
+              
+          }}
+           >
+           
+       
+            <ListIcon data ={dataList} /> 
+        
+           </Stack>
+
+           
          
-        <Box> 
-        <ListIcon data ={dataList} /> 
-        </Box>   
+         
       </Box>
       
 
