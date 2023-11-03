@@ -10,29 +10,34 @@ import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
 import image from '../assets/picprofile.png'; 
 import AutoStoriesRoundedIcon from '@mui/icons-material/AutoStoriesRounded';
+import Slider from '@mui/material/Slider';
 
 export default function SliderList({data}) {
+  const fixedValue = 50; // Establece el valor fijo
+
+  const marks = [
+    {
+      value: fixedValue,
+      label: fixedValue.toString(),
+    },
+  ];
+  const sliderStyle = {
+    width: '150px', // Ajusta el ancho del slider
+  };
   
     const elements = data.map((item) => (
         <div><ListItem>
-            <ListItemAvatar>
-                <Avatar>
+           
                 
-                <img width="48" height="48" src={item.link} alt="spain-circular"/>
+                <img width="48" height="48" src={item.link} />
                
-                </Avatar>
-            </ListItemAvatar>
             <ListItemText primary={item.name} 
-            secondary={<div>
-                <input
-                    background= 'black'
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={item.level}
-                    readOnly // Make the input read-only to keep the fixed value
-                  />
-            </div>} />
+            secondary={<Slider
+              value={item.level}
+              
+              style={{ color: 'black', width: '70px'}} // Cambia el color del slider a negro
+            />
+        } />
            
           
         </ListItem>

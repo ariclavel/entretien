@@ -74,7 +74,7 @@ const Cv= () =>{
       ]
       const dataList3 = [
         {name: "Javascript", level: 76, link: "https://img.icons8.com/fluency/48/javascript.png"},
-        {name: "React+Material UI", level: 58, link: "https://img.icons8.com/plasticine/100/react.png" },
+        {name: "React-Material UI", level: 58, link: "https://img.icons8.com/plasticine/100/react.png" },
         {name: "Scikitlearn, Flask", level: 63, link: "https://img.icons8.com/plasticine/100/python.png"},
         {name: "AgentPy, TensorFlow", level: 50, link: "https://img.icons8.com/plasticine/100/python.png"}
         
@@ -98,6 +98,7 @@ const Cv= () =>{
         {name: "FireBase", level: 50, link: "https://img.icons8.com/color/96/firebase.png"},
         {name: "MongoDB", level: 40, link: "https://img.icons8.com/color/96/mongodb.png"}
       ]
+     
 
     return(
       
@@ -199,7 +200,7 @@ const Cv= () =>{
            >
               Education
            </Stack>
-        <Stack spacing={3} direction="row"  justifyContent="center"
+        <Stack spacing={2} direction="row"  justifyContent="center"
             sx={{ 
               color: 'text.secondary',
               bgcolor: 'background.paper',
@@ -218,7 +219,7 @@ const Cv= () =>{
            </Stack>
            
            <Grid container spacing={2}>
-          <Grid item xs={4}>
+          <Grid item xs={3.5}>
            
        
           <Stack spacing={2} direction="row"  justifyContent="center"
@@ -239,7 +240,7 @@ const Cv= () =>{
               Languages
            </Stack>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={8.5}>
            
        
             <Stack spacing={2} direction="row"  justifyContent="center"
@@ -261,26 +262,26 @@ const Cv= () =>{
            </Stack>
             </Grid>
             </Grid>
-           <Stack spacing={4} direction="row"  justifyContent="center" 
+           <Stack spacing={3} direction="row"  justifyContent="center" 
             sx={{ 
               color: 'text.secondary',
               bgcolor: 'background.paper',
               borderRadius: 5,
               p:5,
               boxShadow: 5,
-              minWidth: 400,
-              padding: 4,
+              minWidth: 100,
+              padding: 1,
+              paddingTop: 2,
+              paddingBottom: 1.5,
               
           }}
            >
-            <Grid container spacing={2}>
-          <Grid item xs={4}>
-           
-       
+            <Grid container spacing={1}>
+          <Grid item xs={3.5}>
             <SliderList data ={dataList2} /> 
             </Grid>
-            <Grid item xs={8}>
-            <Grid container spacing={30}>
+            <Grid item xs={8.5}>
+            <Grid container spacing={17}>
           <Grid item xs={2}>
           <SliderList data ={dataList3} /> 
           </Grid>
@@ -301,22 +302,7 @@ const Cv= () =>{
         
            </Stack>
            
-           <Stack spacing={2} direction="row"  justifyContent="center" 
-            sx={{ 
-              color: 'text.primary',
-              bgcolor: 'background.paper',
-              borderRadius: 5,
-              p:2,
-              boxShadow: 5,
-              minWidth: 100,
-              padding: 1,
-              fontSize: 17,
-              fontWeight: 'bold',
-              
-          }}
-           >
-              Skills 
-           </Stack>
+           
            <Stack spacing={2} direction="row"  justifyContent="center"
             sx={{ 
               color: 'text.primary',
