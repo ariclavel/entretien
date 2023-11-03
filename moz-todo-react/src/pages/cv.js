@@ -21,6 +21,8 @@ import ToolTip from "../components/ToolTip";
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 import WorkIcon from '@mui/icons-material/Work';
+import SliderList from "../components/SliderList";
+import Grid from '@mui/material/Grid';
 const Cv= () =>{
   const readOnlyValue = 75;
  
@@ -64,6 +66,39 @@ const Cv= () =>{
         {icon: "BACHELOR’S DEGREE in computer science, Exchange Program, Institut Supérieur d´éléctronique de Paris, ISEP", date: "Sep 2022- Jan 2023", pic: '2', place: 'Paris, France', link: 'https://www.isep.fr/'},
         {icon: "BACHELOR’S DEGREE in computer science, Tecnológico de Monterrey", date: "Jun 2019- Jun 2023", pic: '2', place: 'GDL, México', link: 'https://tec.mx/en'}
       ]
+      const dataList2 = [
+        {name: "Spanish", level: 100, link: "https://img.icons8.com/color/48/spain-circular.png"},
+        {name: "French", level: 85, link: "https://img.icons8.com/color/48/france-circular.png"},
+        {name: "English", level: 75, link: "https://img.icons8.com/color/48/great-britain-circular.png"}
+        
+      ]
+      const dataList3 = [
+        {name: "Javascript", level: 76, link: "https://img.icons8.com/fluency/48/javascript.png"},
+        {name: "React+Material UI", level: 58, link: "https://img.icons8.com/plasticine/100/react.png" },
+        {name: "Scikitlearn, Flask", level: 63, link: "https://img.icons8.com/plasticine/100/python.png"},
+        {name: "AgentPy, TensorFlow", level: 50, link: "https://img.icons8.com/plasticine/100/python.png"}
+        
+      ]
+      const dataList4 = [
+        {name: "Matlab", level: 60, link: "https://img.icons8.com/fluency/48/matlab.png"},
+        {name: "C++", level: 60, link: "https://img.icons8.com/color/96/c-plus-plus-logo.png"},
+        {name: "PHP", level: 55, link: "https://img.icons8.com/ultraviolet/40/php.png" },
+        {name: "Java", level: 40, link: "https://img.icons8.com/fluency/96/java-coffee-cup-logo.png"}
+        
+      ]
+      const dataList5 = [
+        {name: "Github", level: 60, link: "https://img.icons8.com/ios-filled/50/github.png" },
+        {name: "Trello", level: 60, link: "https://img.icons8.com/nolan/64/trello.png"},
+        {name: "Scrum-Methodology", level: 55, link: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-scrum-agile-flaticons-lineal-color-flat-icons-4.png" }
+        
+      ]
+      const dataList6 = [
+        {name: "MySQL", level: 70, link: "https://img.icons8.com/officel/80/mysql.png"},
+        {name: "DB2", level: 55, link: "https://img.icons8.com/external-creatype-outline-colourcreatype/64/external-db2-video-file-extension-line-creatype-outline-colourcreatype.png" },
+        {name: "FireBase", level: 50, link: "https://img.icons8.com/color/96/firebase.png"},
+        {name: "MongoDB", level: 40, link: "https://img.icons8.com/color/96/mongodb.png"}
+      ]
+
     return(
       
         
@@ -181,6 +216,144 @@ const Cv= () =>{
             <ListIcon data ={dataList} /> 
         
            </Stack>
+           
+           <Grid container spacing={2}>
+          <Grid item xs={4}>
+           
+       
+          <Stack spacing={2} direction="row"  justifyContent="center"
+            sx={{ 
+              color: 'text.primary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:2,
+              boxShadow: 5,
+              minWidth: 100,
+              padding: 1,
+              fontSize: 17,
+              fontWeight: 'bold',
+              
+          }}
+           >
+            
+              Languages
+           </Stack>
+            </Grid>
+            <Grid item xs={8}>
+           
+       
+            <Stack spacing={2} direction="row"  justifyContent="center"
+            sx={{ 
+              color: 'text.primary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:2,
+              boxShadow: 5,
+              minWidth: 100,
+              padding: 1,
+              fontSize: 17,
+              fontWeight: 'bold',
+              
+          }}
+           >
+            
+              Skills
+           </Stack>
+            </Grid>
+            </Grid>
+           <Stack spacing={4} direction="row"  justifyContent="center" 
+            sx={{ 
+              color: 'text.secondary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:5,
+              boxShadow: 5,
+              minWidth: 400,
+              padding: 4,
+              
+          }}
+           >
+            <Grid container spacing={2}>
+          <Grid item xs={4}>
+           
+       
+            <SliderList data ={dataList2} /> 
+            </Grid>
+            <Grid item xs={8}>
+            <Grid container spacing={30}>
+          <Grid item xs={2}>
+          <SliderList data ={dataList3} /> 
+          </Grid>
+          <Grid item xs={2}>
+          <SliderList data ={dataList4} /> 
+          </Grid>
+          <Grid item xs={2}>
+          <SliderList data ={dataList5} /> 
+          </Grid>
+          <Grid item xs={2}>
+          <SliderList data ={dataList6} /> 
+          </Grid>
+            </Grid>
+       
+            
+            </Grid>
+            </Grid>
+        
+           </Stack>
+           
+           <Stack spacing={2} direction="row"  justifyContent="center" 
+            sx={{ 
+              color: 'text.primary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:2,
+              boxShadow: 5,
+              minWidth: 100,
+              padding: 1,
+              fontSize: 17,
+              fontWeight: 'bold',
+              
+          }}
+           >
+              Skills 
+           </Stack>
+           <Stack spacing={2} direction="row"  justifyContent="center"
+            sx={{ 
+              color: 'text.primary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:2,
+              boxShadow: 5,
+              minWidth: 100,
+              padding: 1,
+              fontSize: 17,
+              fontWeight: 'bold',
+              
+          }}
+           >
+           
+
+
+
+              Projects
+           </Stack>
+           <Stack spacing={2} direction="row"  justifyContent="center"
+            sx={{ 
+              color: 'text.primary',
+              bgcolor: 'background.paper',
+              borderRadius: 5,
+              p:2,
+              boxShadow: 5,
+              minWidth: 100,
+              padding: 1,
+              fontSize: 17,
+              fontWeight: 'bold',
+              
+          }}
+           >
+              Awards & Recognition
+           </Stack>
+           
 
            
          
